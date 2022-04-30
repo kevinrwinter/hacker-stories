@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lists in React</title>
+    <style>
+      .title {
+        font-weight: bolder;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+      code {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 1.2rem;
+      }
+      p {
+        margin-bottom: 2rem;
+      }
+      .indent {
+        padding-left: 1.5rem;
+      }
+      .indent-2 {
+        padding-left: 3rem;
+      }
+      .highlight {
+        color: green;
+      }
+      .highlight-2 {
+        color: red;
+      }
+      .comment {
+        color: grey;
+        font-style: italic;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- JS class example -->
+    <p class="title">Code Playground – JavaScript classes</p>
+    <hr />
+    <p>
+      <code><span class="highlight">class</span> Person {</code>
+      <br />
+      <code class="indent">constructor(firstName, lastName) {</code>
+      <br />
+      <code class="indent-2"><span class="highlight">this</span>.firstName = firstName;</code>
+      <br />
+      <code class="indent-2"><span class="highlight">this</span>.lastName = lastName;</code>
+      <br />
+      <code class="indent">}</code>
+    </p>
+
+    <p>
+      <code class="indent">getName() {</code>
+      <br />
+      <code class="indent-2"><span class="highlight">return this</span>.firstName = firstName;</code>
+      <br />
+      <code class="indent">}</code>
+      <br />
+      <code>}</code>
+    </p>
+
+    <p>
+      <code
+        ><span class="highlight">const</span> kevin = <span class="highlight">new </span>Person(<span
+          class="highlight-2"
+          >'Kevin', 'Winter'</span
+        >);</code
+      >
+      <br />
+      <code
+        ><span class="highlight">const</span> jenni = <span class="highlight">new </span>Person(<span
+          class="highlight-2"
+          >'Jenni', 'Winter'</span
+        >);</code
+      >
+    </p>
+
+    <p>
+      <code>console.log(kevin.getName());</code>
+      <br />
+      <code class="comment">// "Kevin Winter"</code>
+      <br />
+      <br />
+      <code>console.log(jenni.getName());</code>
+      <br />
+      <code class="comment">// "Jenni Winter"</code>
+    </p>
+    <hr />
+
+    <script src="./index.js"></script>
+  </body>
+</html>

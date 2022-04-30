@@ -2,7 +2,6 @@
 
 # Exercises
 
-- Confirm [source code](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/2021/Meet-another-React-Component).
-- Confirm [changes](https://github.com/the-road-to-learn-react/hacker-stories/compare/2021/Lists-in-React...2021/Meet-another-React-Component).
-- We can’t extract an Item component from the List component (like in the illustration) yet,
-  because we don’t know how to pass individual items from the list to each Item component. Think about a way to do it.
+- Familiarize yourself with the terms component declaration, component instance and element.
+- Experiment by creating multiple component instances of a List component.
+- If we keep treating the list variable as a global variable, every List component would use the same list. Think about how it could be possible to give each List component its own list variable.
