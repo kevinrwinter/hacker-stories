@@ -19,20 +19,26 @@ const list = [
   },
 ];
 
+// App component declaration
 function App() {
   return (
     <div>
       <h1>My Hacker Stories</h1>
 
+      {/* Search component instantiation */}
       <Search />
 
       <hr />
 
+      {/* List component instantiation */}
+      <List />
+      {/* Another List component instantiation */}
       <List />
     </div>
   );
 }
 
+// Search component declaration
 function Search() {
   return (
     <div>
@@ -42,6 +48,7 @@ function Search() {
   );
 }
 
+// List component declaration
 function List() {
   return (
     <ul>
