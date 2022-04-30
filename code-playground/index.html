@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lists in React</title>
+    <style>
+      .title {
+        font-weight: bolder;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+      code {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 1.2rem;
+      }
+      p {
+        margin-bottom: 2rem;
+      }
+      .indent {
+        padding-left: 1.5rem;
+      }
+      .highlight {
+        color: green;
+      }
+      .comment {
+        color: grey;
+        font-style: italic;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- array.map() example -->
+    <p class="title">
+      Code Playground –
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map"
+        >array.map()</a
+      >
+      method:
+    </p>
+    <hr />
+    <p>
+      <code><span class="highlight">const</span> numbers = [1, 2, 3, 4];</code>
+    </p>
+    <p>
+      <code>const exponentialNumbers = numbers.map(<span class="highlight">function</span> (number) { </code>
+      <br />
+      <code class="indent"><span class="highlight">return</span> number * number;</code>
+      <br />
+      <code>});</code>
+    </p>
+
+    <p><code></code></p>
+    <p>
+      <code>console.log(exponentialNumbers);</code>
+      <br />
+      <code class="comment">// [1, 4, 9, 16]</code>
+    </p>
+    <hr />
+
+    <script src="./index.js"></script>
+  </body>
+</html>
