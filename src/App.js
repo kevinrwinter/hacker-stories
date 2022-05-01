@@ -32,8 +32,6 @@ function App() {
 
       {/* List component instantiation */}
       <List />
-      {/* Another List component instantiation */}
-      <List />
     </div>
   );
 }

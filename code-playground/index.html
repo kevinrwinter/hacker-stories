@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lists in React</title>
+    <title>React DOM</title>
     <style>
       .title {
         font-weight: bolder;
@@ -42,53 +42,21 @@
     <p class="title">Code Playground – JavaScript classes</p>
     <hr />
     <p>
-      <code><span class="highlight">class</span> Person {</code>
+      <code><span class="highlight">const</span> title = <span class="highlight-2">'React'</span>;</code>
       <br />
-      <code class="indent">constructor(firstName, lastName) {</code>
-      <br />
-      <code class="indent-2"><span class="highlight">this</span>.firstName = firstName;</code>
-      <br />
-      <code class="indent-2"><span class="highlight">this</span>.lastName = lastName;</code>
-      <br />
-      <code class="indent">}</code>
-    </p>
-
-    <p>
-      <code class="indent">getName() {</code>
-      <br />
-      <code class="indent-2"><span class="highlight">return this</span>.firstName = firstName;</code>
-      <br />
-      <code class="indent">}</code>
-      <br />
-      <code>}</code>
-    </p>
-
-    <p>
-      <code
-        ><span class="highlight">const</span> kevin = <span class="highlight">new </span>Person(<span
-          class="highlight-2"
-          >'Kevin', 'Winter'</span
-        >);</code
-      >
       <br />
       <code
-        ><span class="highlight">const</span> jenni = <span class="highlight">new </span>Person(<span
-          class="highlight-2"
-          >'Jenni', 'Winter'</span
-        >);</code
+        ><span class="highlight">const</span> root = ReactDOM.createRoot(<span class="highlight">document</span
+        >.getElementById(<span class="highlight-2">'root'</span>));</code
       >
+      <br />
+      <code>root.render(</code>
+      <br />
+      <code class="indent">&lt;h1&gt;Hello {title}&lt;h1/&gt;</code>
+      <br />
+      <code>);</code>
     </p>
 
-    <p>
-      <code>console.log(kevin.getName());</code>
-      <br />
-      <code class="comment">// "Kevin Winter"</code>
-      <br />
-      <br />
-      <code>console.log(jenni.getName());</code>
-      <br />
-      <code class="comment">// "Jenni Winter"</code>
-    </p>
     <hr />
 
     <script src="./index.js"></script>
