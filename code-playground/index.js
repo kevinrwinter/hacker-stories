@@ -1,4 +1,13 @@
-const title = "React";
+// with block body
+const addOne = (count) => {
+  // perform any task in between
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<h1>Hello {title}</h1>);
+  return count + 1;
+};
+
+const addOne = (count) =>
+  // with concise body as multi-line
+  count + 1;
+
+// with concise body as one line
+const addOne = (count) => count + 1;

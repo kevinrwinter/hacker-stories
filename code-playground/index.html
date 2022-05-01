@@ -24,6 +24,9 @@
       .indent-2 {
         padding-left: 3rem;
       }
+      .indent-3 {
+        padding-left: 4.5rem;
+      }
       .highlight {
         color: green;
       }
@@ -38,23 +41,50 @@
   </head>
 
   <body>
-    <!-- JS class example -->
-    <p class="title">Code Playground – JavaScript classes</p>
+    <!-- function declaration / arrow function expression -->
+    <p class="title">Code Playground – Arrow functions for declaring function components</p>
     <hr />
     <p>
-      <code><span class="highlight">const</span> title = <span class="highlight-2">'React'</span>;</code>
+      <code><span class="comment">// function declaration</span></code>
+      <br />
+      <code><span class="highlight">function</span> App() { ... }</code>
+      <br />
+    </p>
+    <p>
+      <code><span class="comment">// arrow function expression</span></code>
+      <br />
+      <code><span class="highlight">const</span> App = () => { ... }</code>
+    </p>
+
+    <hr />
+
+    <br />
+    <br />
+    <br />
+
+    <!-- function declaration / arrow function expression -->
+    <p class="title">
+      Code Playground – block bodies will be necessary to introduce logic between function signature and return
+      statement
+    </p>
+    <hr />
+    <p>
+      <code><span class="highlight">const</span> App = () => {</code>
+      <br />
+      <code class="indent"><span class="comment">// perform a task in between</span></code>
       <br />
       <br />
-      <code
-        ><span class="highlight">const</span> root = ReactDOM.createRoot(<span class="highlight">document</span
-        >.getElementById(<span class="highlight-2">'root'</span>));</code
-      >
+      <code class="indent"><span class="highlight">return</span> (</code>
       <br />
-      <code>root.render(</code>
+      <code class="indent-2">&lt;div&gt;</code>
       <br />
-      <code class="indent">&lt;h1&gt;Hello {title}&lt;h1/&gt;</code>
+      <code class="indent-3">...</code>
       <br />
-      <code>);</code>
+      <code class="indent-2">&lt;/div&gt;</code>
+      <br />
+      <code class="indent">);</code>
+      <br />
+      <code>};</code>
     </p>
 
     <hr />
