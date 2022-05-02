@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>React DOM</title>
+    <title>Handler Function in JSX</title>
     <style>
       .title {
         font-weight: bolder;
@@ -41,50 +41,24 @@
   </head>
 
   <body>
-    <!-- function declaration / arrow function expression -->
-    <p class="title">Code Playground – Arrow functions for declaring function components</p>
+    <!-- Always pass functions to these handlers, not the return value of the function, except when the return value is a function again. Knowing this is crucial because it's a well-known source for bugs in a React beginner's application: -->
+    <p class="title">Code Playground – JSX handler functions</p>
     <hr />
     <p>
-      <code><span class="comment">// function declaration</span></code>
+      <code><span class="comment">// if handleChange is a function</span></code>
       <br />
-      <code><span class="highlight">function</span> App() { ... }</code>
+      <code><span class="comment">// which does not return a function</span></code>
+      <br />
+      <code><span class="comment">// don't do this</span></code>
+      <br />
+      <code>&lt;input onChange={handleChange()} /&gt;</code>
       <br />
     </p>
     <p>
-      <code><span class="comment">// arrow function expression</span></code>
+      <code><span class="comment">// do this instead</span></code>
       <br />
-      <code><span class="highlight">const</span> App = () => { ... }</code>
-    </p>
-
-    <hr />
-
-    <br />
-    <br />
-    <br />
-
-    <!-- function declaration / arrow function expression -->
-    <p class="title">
-      Code Playground – block bodies will be necessary to introduce logic between function signature and return
-      statement
-    </p>
-    <hr />
-    <p>
-      <code><span class="highlight">const</span> App = () => {</code>
+      <code>&lt;input onChange={handleChange} /&gt;</code>
       <br />
-      <code class="indent"><span class="comment">// perform a task in between</span></code>
-      <br />
-      <br />
-      <code class="indent"><span class="highlight">return</span> (</code>
-      <br />
-      <code class="indent-2">&lt;div&gt;</code>
-      <br />
-      <code class="indent-3">...</code>
-      <br />
-      <code class="indent-2">&lt;/div&gt;</code>
-      <br />
-      <code class="indent">);</code>
-      <br />
-      <code>};</code>
     </p>
 
     <hr />
