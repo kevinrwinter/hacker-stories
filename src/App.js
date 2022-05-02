@@ -19,7 +19,6 @@ const list = [
   },
 ];
 
-// All JSX is more concise now, because it omits the function statement, the curly braces, and the return statement.
 const App = () => (
   <div>
     <h1>My Hacker Stories</h1>
@@ -32,15 +31,22 @@ const App = () => (
   </div>
 );
 
-// All JSX is more concise now, because it omits the function statement, the curly braces, and the return statement.
-const Search = () => (
-  <div>
-    <label htmlFor="search">Search: </label>
-    <input id="search" type="text" />
-  </div>
-);
+const Search = () => {
+  const handleChange = (event) => {
+    // synthetic change
+    console.log(event);
+    // value of event.target
+    console.log(event.target.value);
+  };
 
-// All JSX is more concise now, because it omits the function statement, the curly braces, and the return statement.
+  return (
+    <div>
+      <label htmlFor="search">Search: </label>
+      <input id="search" type="text" onChange={handleChange} onBlur={handleChange} />
+    </div>
+  );
+};
+
 const List = () => (
   <ul>
     {list.map((item) => (

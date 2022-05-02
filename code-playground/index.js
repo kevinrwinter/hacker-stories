@@ -1,13 +1,7 @@
-// with block body
-const addOne = (count) => {
-  // perform any task in between
+// if handleChange is a function
+// which does not return a function
+// don't do this
+<input onChange={handleChange()} />
 
-  return count + 1;
-};
-
-const addOne = (count) =>
-  // with concise body as multi-line
-  count + 1;
-
-// with concise body as one line
-const addOne = (count) => count + 1;
+// do this instead
+<input onChange={handleChange} />
