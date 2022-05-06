@@ -1,6 +1,8 @@
 import * as React from "react";
 
 const App = () => {
+  // console.log("App renders");
+
   const stories = [
     {
       title: "React",
@@ -34,14 +36,24 @@ const App = () => {
 };
 
 const Search = () => {
+  // let searchTerm = "";
+  const [searchTerm, setSearchTerm] = React.useState("");
+
   const handleChange = (event) => {
-    console.log(event.target.value);
+    // searchTerm = event.target.value;
+    setSearchTerm(event.target.value);
   };
+
+  // console.log("Search renders");
 
   return (
     <div>
       <label htmlFor="search">Search: </label>
       <input id="search" type="text" onChange={handleChange} />
+
+      <p>
+        Searching for <strong>{searchTerm}</strong>.
+      </p>
     </div>
   );
 };
@@ -52,6 +64,7 @@ const List = (props) => (
       <Item key={item.objectID} item={item} />
     ))}
   </ul>
+  // console.log("List renders")
 );
 
 const Item = (props) => (
@@ -63,6 +76,7 @@ const Item = (props) => (
     <span>{props.item.num_comments}</span>
     <span>{props.item.points}</span>
   </li>
+  // console.log("Item renders")
 );
 
 export default App;
