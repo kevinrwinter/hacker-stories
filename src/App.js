@@ -1,8 +1,6 @@
 import * as React from "react";
 
 const App = () => {
-  // console.log("App renders");
-
   const stories = [
     {
       title: "React",
@@ -22,11 +20,18 @@ const App = () => {
     },
   ];
 
+  // (A) Callback handler is introduced as event handler ...
+  const handleSearch = (event) => {
+    // D ... and calls back to the place it was introduced.
+    console.log(event.target.value);
+  };
+
   return (
     <div>
       <h1>My Hacker Stories</h1>
 
-      <Search />
+      {/* // (B) ... is passed as function in props to another component ... */}
+      <Search onSearch={handleSearch} />
 
       <hr />
 
@@ -35,16 +40,15 @@ const App = () => {
   );
 };
 
-const Search = () => {
-  // let searchTerm = "";
+const Search = (props) => {
   const [searchTerm, setSearchTerm] = React.useState("");
 
   const handleChange = (event) => {
-    // searchTerm = event.target.value;
     setSearchTerm(event.target.value);
-  };
 
-  // console.log("Search renders");
+    // (C) ... is executed here as callback handler ...
+    props.onSearch(event);
+  };
 
   return (
     <div>
@@ -64,7 +68,6 @@ const List = (props) => (
       <Item key={item.objectID} item={item} />
     ))}
   </ul>
-  // console.log("List renders")
 );
 
 const Item = (props) => (
@@ -76,7 +79,6 @@ const Item = (props) => (
     <span>{props.item.num_comments}</span>
     <span>{props.item.points}</span>
   </li>
-  // console.log("Item renders")
 );
 
 export default App;
