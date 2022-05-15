@@ -61,3 +61,27 @@ console.log(user);
 //   gender: "male"
 //   lastName: "Winter"
 // }
+
+// ////////////////////
+
+const coder = {
+  id: "1",
+  firstName: "Kevin",
+  lastName: "Winter",
+  country: "Finland",
+  city: "Helsinki",
+};
+
+const { id, country, city, ...userWithoutAddress } = coder;
+
+console.log(userWithoutAddress);
+// {
+//   firstName: "Kevin"
+//   lastName: "Winter"
+// }
+
+console.log(id);
+// '1'
+
+console.log(city);
+// Helsinki

@@ -123,8 +123,10 @@
       <code><span class="comment">// "Kevin has a pet called Leevi"</span></code>
       <br />
     </p>
+    <hr />
+    <br />
 
-    <p class="title">Code Playground – spread and rest operators</p>
+    <p class="title">Code Playground – spread and rest operators (1)</p>
     <hr />
 
     <p>
@@ -172,6 +174,55 @@
       <code><span class="comment">//</span><span class="comment indent"> city: "Helsinki",</span></code>
       <br />
       <code><span class="comment">// }</span></code>
+    </p>
+
+    <hr />
+    <br />
+
+    <p class="title">Code Playground – spread and rest operators (2)</p>
+    <hr />
+
+    <p>
+      <code><span class="highlight">const</span> coder = {</code>
+      <br />
+      <code><span class="indent">id: </span><span class="highlight-2">'1'</span>,</code>
+      <br />
+      <code><span class="indent">firstName: </span><span class="highlight-2">'Kevin'</span>,</code>
+      <br />
+      <code><span class="indent">lastName: </span><span class="highlight-2">'Winter'</span>,</code>
+      <br />
+      <code><span class="indent">country: </span><span class="highlight-2">'Finland'</span>,</code>
+      <br />
+      <code><span class="indent">city: </span><span class="highlight-2">'Helsinki'</span>,</code>
+      <br />
+      <code><span>};</span></code>
+    </p>
+    <p>
+      <code><span class="highlight">const</span> { id, country, city, ...userWithoutAddress } = coder;</code>
+      <br />
+    </p>
+    <p>
+      <code>console.log(userWithoutAddress);</code>
+      <br />
+      <code><span class="comment">// {</span></code>
+      <br />
+      <code><span class="comment">//</span><span class="comment indent"> firstName: "Kevin",</span></code>
+      <br />
+      <code><span class="comment">//</span><span class="comment indent"> lastName: "Winter",</span></code>
+      <br />
+      <code><span class="comment">// }</span></code>
+    </p>
+    <p>
+      <code>console.log(id);</code>
+      <br />
+      <code><span class="comment">// "1"</span></code>
+      <br />
+    </p>
+    <p>
+      <code>console.log(city);</code>
+      <br />
+      <code><span class="comment">// "Helsinki"</span></code>
+      <br />
     </p>
 
     <script src="./index.js"></script>
