@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Props Handling (Advanced)</title>
+    <style>
+      .title {
+        font-weight: bolder;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+      code {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 1.2rem;
+      }
+      p {
+        margin-bottom: 2rem;
+      }
+      .indent {
+        padding-left: 1.5rem;
+      }
+      .indent-2 {
+        padding-left: 3rem;
+      }
+      .indent-3 {
+        padding-left: 4.5rem;
+      }
+      .highlight {
+        color: green;
+      }
+      .highlight-2 {
+        color: red;
+      }
+      .comment {
+        color: grey;
+        font-style: italic;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p class="title">Code Playground – Props destructuring via object destructuring</p>
+    <hr />
+    <p>
+      <code><span class="highlight">const</span> user = {</code>
+      <br />
+      <code><span class="indent">firstName: </span><span class="highlight-2">'Kevin'</span>,</code>
+      <br />
+      <code><span class="indent">lastName: </span><span class="highlight-2">'Winter'</span>,</code>
+      <br />
+      <code><span>];</span></code>
+    </p>
+
+    <p>
+      <code><span class="comment">// Without object destructuring</span></code>
+      <br />
+      <code><span class="highlight">const </span> firstName = user.firstName;</code>
+      <br />
+      <code><span class="highlight">const </span> lastName = user.lastName;</code>
+      <br />
+    </p>
+
+    <p>
+      <code><span class="comment">// With object destructuring</span></code>
+      <br />
+      <code><span class="highlight">const </span> { firstName, lastName } = user;</code>
+    </p>
+
+    <hr />
+    <br />
+
+    <p class="title">Code Playground – yhyh</p>
+    <hr />
+    <p>
+      <script src="./index.js"></script>
+    </p>
+  </body>
+</html>
