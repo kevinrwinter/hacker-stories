@@ -73,7 +73,6 @@
 
     <p class="title">Code Playground – nested destructuring</p>
     <hr />
-    <p></p>
 
     <p>
       <code><span class="highlight">const</span> petOwner = {</code>
@@ -123,6 +122,56 @@
       <br />
       <code><span class="comment">// "Kevin has a pet called Leevi"</span></code>
       <br />
+    </p>
+
+    <p class="title">Code Playground – spread and rest operators</p>
+    <hr />
+
+    <p>
+      <code><span class="highlight">const</span> profile = {</code>
+      <br />
+      <code><span class="indent">firstName: </span><span class="highlight-2">'Kevin'</span>,</code>
+      <br />
+      <code><span class="indent">lastName: </span><span class="highlight-2">'Winter'</span>,</code>
+      <br />
+      <code><span>};</span></code>
+    </p>
+    <p>
+      <code><span class="highlight">const</span> address = {</code>
+      <br />
+      <code><span class="indent">country: </span><span class="highlight-2">'Finland'</span>,</code>
+      <br />
+      <code><span class="indent">city: </span><span class="highlight-2">'Helsinki'</span>,</code>
+      <br />
+      <code><span>};</span></code>
+    </p>
+    <p>
+      <code><span class="highlight">const</span> user = {</code>
+      <br />
+      <code><span class="indent">...profile, </span></code>
+      <br />
+      <code><span class="indent">gender: </span><span class="highlight-2">'male'</span>,</code>
+      <br />
+      <code><span class="indent">...address, </span></code>
+      <br />
+      <code><span>};</span></code>
+    </p>
+    <p>
+      <code>console.log(user);</code>
+      <br />
+      <code><span class="comment">// {</span></code>
+      <br />
+      <code><span class="comment">//</span><span class="comment indent"> firstName: "Kevin",</span></code>
+      <br />
+      <code><span class="comment">//</span><span class="comment indent"> lastName: "Winter",</span></code>
+      <br />
+      <code><span class="comment">//</span><span class="comment indent"> gender: "male",</span></code>
+      <br />
+      <code><span class="comment">//</span><span class="comment indent"> country: "Finland",</span></code>
+      <br />
+      <code><span class="comment">//</span><span class="comment indent"> city: "Helsinki",</span></code>
+      <br />
+      <code><span class="comment">// }</span></code>
     </p>
 
     <script src="./index.js"></script>

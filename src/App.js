@@ -48,16 +48,24 @@ const Search = ({ search, onSearch }) => (
   </div>
 );
 
+// Variation 2: Spread and Rest Operators
+// 1. Step
 const List = ({ list }) => (
   <ul>
     {list.map((item) => (
-      <Item key={item.objectID} item={item} />
+      <Item
+        key={item.objectID}
+        title={item.title}
+        url={item.url}
+        author={item.author}
+        num_comments={item.num_comments}
+        points={item.points}
+      />
     ))}
   </ul>
 );
 
-// Variation 1: Nested Destructuring
-const Item = ({ item: { title, url, author, num_comments, points } }) => (
+const Item = ({ title, url, author, num_comments, points }) => (
   <li>
     <span>
       <a href={url}>{title}</a>

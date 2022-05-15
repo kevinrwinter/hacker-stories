@@ -24,6 +24,8 @@ const petOwner = {
 // console.log(firstName + " has a pet called " + name);
 // "Kevin has a pet called Leevi"
 
+// ////////////////////
+
 // With nested object destructuring
 const {
   firstName,
@@ -32,3 +34,30 @@ const {
 
 console.log(firstName + " has a pet called " + name);
 // "Kevin has a pet called Leevi"
+
+// ////////////////////
+
+const profile = {
+  firstName: "Kevin",
+  lastName: "Winter",
+};
+
+const address = {
+  country: "Finland",
+  city: "Helsinki",
+};
+
+const user = {
+  ...profile,
+  gender: "male",
+  ...address,
+};
+
+console.log(user);
+// {
+//   city: "Helsinki"
+//   country: "Finland"
+//   firstName: "Kevin"
+//   gender: "male"
+//   lastName: "Winter"
+// }
