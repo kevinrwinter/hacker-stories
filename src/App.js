@@ -49,11 +49,11 @@ const Search = ({ search, onSearch }) => (
 );
 
 // Variation 2: Spread and Rest Operators
-// 2. Step
+// Final Step
 const List = ({ list }) => (
   <ul>
-    {list.map((item) => (
-      <Item key={item.objectID} {...item} />
+    {list.map(({ objectID, ...item }) => (
+      <Item key={objectID} {...item} />
     ))}
   </ul>
 );
