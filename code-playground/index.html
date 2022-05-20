@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Props Handling (Advanced)</title>
+    <title>Side-Effects</title>
     <style>
       .title {
         font-weight: bolder;
@@ -41,187 +41,36 @@
   </head>
 
   <body>
-    <p class="title">Code Playground – Props destructuring via object destructuring</p>
+    <p class="title">Code Playground – React Side-Effects</p>
     <hr />
     <p>
-      <code><span class="highlight">const</span> user = {</code>
+      <code><span class="highlight">let</span> hasStored;</code>
       <br />
-      <code><span class="indent">firstName: </span><span class="highlight-2">'Kevin'</span>,</code>
+      <code
+        ><span class="highlight">if </span> (localStorage.getItem(<span class="highlight-2">'search'</span>)) {</code
+      >
       <br />
-      <code><span class="indent">lastName: </span><span class="highlight-2">'Winter'</span>,</code>
+      <code><span class="indent">hasStored = </span><span class="highlight">true</span>;</code>
       <br />
-      <code><span>};</span></code>
+      <code>}<span class="highlight"> else</span> {</code>
+      <br />
+      <code
+        ><span class="indent"> hasStored = <span class="highlight"> false</span>; </span></code
+      >
+      <br />
+      <code>}</code>
     </p>
 
     <p>
-      <code><span class="comment">// Without object destructuring</span></code>
+      <code><span class="highlight">const </span> initialState = hasStored</code>
       <br />
-      <code><span class="highlight">const </span> firstName = user.firstName;</code>
+      <code
+        ><span class="indent">? localStorage.getItem(<span class="highlight-2">'search'</span>) </span>
+      </code>
       <br />
-      <code><span class="highlight">const </span> lastName = user.lastName;</code>
-      <br />
-    </p>
-
-    <p>
-      <code><span class="comment">// With object destructuring</span></code>
-      <br />
-      <code><span class="highlight">const </span> { firstName, lastName } = user;</code>
-    </p>
-
-    <hr />
-    <br />
-
-    <p class="title">Code Playground – nested destructuring</p>
-    <hr />
-
-    <p>
-      <code><span class="highlight">const</span> petOwner = {</code>
-      <br />
-      <code><span class="indent">firstName: </span><span class="highlight-2">'Kevin'</span>,</code>
-      <br />
-      <code><span class="indent">pet: {</span></code>
-      <br />
-      <code><span class="indent-2">name: </span><span class="highlight-2">'Leevi'</span>,</code>
-      <br />
-      <code><span class="indent">},</span></code>
-      <br />
-      <code><span>};</span></code>
-    </p>
-
-    <p>
-      <code><span class="comment">// Without object destructuring</span></code>
-      <br />
-      <code><span class="highlight">const </span> firstName = petOwner.firstName;</code>
-      <br />
-      <code><span class="highlight">const </span> name = petOwner.pet.name;</code>
-    </p>
-    <p>
-      <code>console.log(firstName + <span class="highlight-2">' has a pet called '</span> + name);</code>
-      <br />
-      <code><span class="comment">// "Kevin has a pet called Leevi"</span></code>
-      <br />
-    </p>
-
-    <p>
-      <code><span class="comment">// With nested object destructuring</span></code>
-      <br />
-      <code><span class="highlight">const </span> {</code>
-      <br />
-      <code><span class="indent">firstName,</span></code>
-      <br />
-      <code><span class="indent">pet: {</span></code>
-      <br />
-      <code><span class="indent-2">name,</span></code>
-      <br />
-      <code><span class="indent">},</span></code>
-      <br />
-      <code>} = petOwner;</code>
-    </p>
-    <p>
-      <code>console.log(firstName + <span class="highlight-2">' has a pet called '</span> + name);</code>
-      <br />
-      <code><span class="comment">// "Kevin has a pet called Leevi"</span></code>
-      <br />
-    </p>
-    <hr />
-    <br />
-
-    <p class="title">Code Playground – spread and rest operators (1)</p>
-    <hr />
-
-    <p>
-      <code><span class="highlight">const</span> profile = {</code>
-      <br />
-      <code><span class="indent">firstName: </span><span class="highlight-2">'Kevin'</span>,</code>
-      <br />
-      <code><span class="indent">lastName: </span><span class="highlight-2">'Winter'</span>,</code>
-      <br />
-      <code><span>};</span></code>
-    </p>
-    <p>
-      <code><span class="highlight">const</span> address = {</code>
-      <br />
-      <code><span class="indent">country: </span><span class="highlight-2">'Finland'</span>,</code>
-      <br />
-      <code><span class="indent">city: </span><span class="highlight-2">'Helsinki'</span>,</code>
-      <br />
-      <code><span>};</span></code>
-    </p>
-    <p>
-      <code><span class="highlight">const</span> user = {</code>
-      <br />
-      <code><span class="indent">...profile, </span></code>
-      <br />
-      <code><span class="indent">gender: </span><span class="highlight-2">'male'</span>,</code>
-      <br />
-      <code><span class="indent">...address, </span></code>
-      <br />
-      <code><span>};</span></code>
-    </p>
-    <p>
-      <code>console.log(user);</code>
-      <br />
-      <code><span class="comment">// {</span></code>
-      <br />
-      <code><span class="comment">//</span><span class="comment indent"> firstName: "Kevin",</span></code>
-      <br />
-      <code><span class="comment">//</span><span class="comment indent"> lastName: "Winter",</span></code>
-      <br />
-      <code><span class="comment">//</span><span class="comment indent"> gender: "male",</span></code>
-      <br />
-      <code><span class="comment">//</span><span class="comment indent"> country: "Finland",</span></code>
-      <br />
-      <code><span class="comment">//</span><span class="comment indent"> city: "Helsinki",</span></code>
-      <br />
-      <code><span class="comment">// }</span></code>
-    </p>
-
-    <hr />
-    <br />
-
-    <p class="title">Code Playground – spread and rest operators (2)</p>
-    <hr />
-
-    <p>
-      <code><span class="highlight">const</span> coder = {</code>
-      <br />
-      <code><span class="indent">id: </span><span class="highlight-2">'1'</span>,</code>
-      <br />
-      <code><span class="indent">firstName: </span><span class="highlight-2">'Kevin'</span>,</code>
-      <br />
-      <code><span class="indent">lastName: </span><span class="highlight-2">'Winter'</span>,</code>
-      <br />
-      <code><span class="indent">country: </span><span class="highlight-2">'Finland'</span>,</code>
-      <br />
-      <code><span class="indent">city: </span><span class="highlight-2">'Helsinki'</span>,</code>
-      <br />
-      <code><span>};</span></code>
-    </p>
-    <p>
-      <code><span class="highlight">const</span> { id, country, city, ...userWithoutAddress } = coder;</code>
-      <br />
-    </p>
-    <p>
-      <code>console.log(userWithoutAddress);</code>
-      <br />
-      <code><span class="comment">// {</span></code>
-      <br />
-      <code><span class="comment">//</span><span class="comment indent"> firstName: "Kevin",</span></code>
-      <br />
-      <code><span class="comment">//</span><span class="comment indent"> lastName: "Winter",</span></code>
-      <br />
-      <code><span class="comment">// }</span></code>
-    </p>
-    <p>
-      <code>console.log(id);</code>
-      <br />
-      <code><span class="comment">// "1"</span></code>
-      <br />
-    </p>
-    <p>
-      <code>console.log(city);</code>
-      <br />
-      <code><span class="comment">// "Helsinki"</span></code>
+      <code
+        ><span class="indent">: <span class="highlight-2">'React'</span>; </span>
+      </code>
       <br />
     </p>
 
