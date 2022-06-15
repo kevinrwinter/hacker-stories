@@ -42,7 +42,7 @@ const App = () => {
     <div>
       <h1>My Hacker Stories</h1>
 
-      <InputWithLabel id="search" value={searchTerm} onInputChange={handleSearch}>
+      <InputWithLabel id="search" value={searchTerm} isFocused onInputChange={handleSearch}>
         <strong>Search:</strong>
       </InputWithLabel>
       <hr />
@@ -52,10 +52,10 @@ const App = () => {
   );
 };
 
-const InputWithLabel = ({ id, value, type = "text", onInputChange, children }) => (
+const InputWithLabel = ({ id, value, type = "text", onInputChange, isFocused, children }) => (
   <>
     <label htmlFor={id}>{children}</label>
-    <input id={id} type={type} value={value} onChange={onInputChange} />
+    <input id={id} type={type} value={value} autoFocus={isFocused} onChange={onInputChange} />
   </>
 );
 
