@@ -1,6 +1,12 @@
 # Notes
 
-... that's the whole example of how to move from declarative to imperative programming in React. In this case, it's possible to use either the declarative or imperative approach as you experienced first hand. However, it's not always possible to use the declarative approach, so the imperative approach can be performed whenever it's necessary.
+Task: The application renders a list of items and allows its users to filter the list via a search feature. Next the application should render a button next to each list item which allows its users to remove the item from the list.
+
+Optional Hints:
+
+- The list of items needs to become a stateful value in order to manipulate it (e.g. removing an item) later.
+- Every list item renders a button with a click handler. When clicking the button, the item gets removed from the list by manipulating the state.
+- Since the stateful list resides in the App component, one needs to use callback handlers to enable the Item component to communicate up to the App component for removing an item by its identifier.
 
 # Exercises
 
