@@ -1,4 +1,6 @@
 import * as React from "react";
+import { useEffect } from "react";
+import { useRef } from "react";
 
 const useStorageState = (key, initialState) => {
   const [value, setValue] = React.useState(localStorage.getItem(key) || initialState);
@@ -52,12 +54,34 @@ const App = () => {
   );
 };
 
-const InputWithLabel = ({ id, value, type = "text", onInputChange, isFocused, children }) => (
-  <>
-    <label htmlFor={id}>{children}</label>
-    <input id={id} type={type} value={value} autoFocus={isFocused} onChange={onInputChange} />
-  </>
-);
+const InputWithLabel = ({ id, value, type = "text", onInputChange, isFocused, children }) => {
+  // A: First, create a ref with React's useRef Hook. This ref object is a persistent value which stays intact over the lifetime of a React component. It comes with a property called `current`, which, in contrast to the `ref` object, can be changed.
+  const inputRef = useRef();
+
+  // C: Third, opt into React's lifecycle with React's useEffect Hook, performing the focus on the element when the component renders (or its dependencies change).
+  useEffect(() => {
+    if (isFocused && inputRef.current) {
+      // D: And fourth, since the ref is passed to the element's ref attribute, its `current` property gives access to the element. Execute its focus programmatically as a side-effect, but only if `isFocused` is set and the `current` property is existent.
+      inputRef.current.focus();
+    }
+  }, [isFocused]);
+
+  return (
+    <>
+      <label htmlFor={id}>{children}</label>
+
+      {/* B: Second, the ref is passed to the element's JSX-reserved ref attribute and thus element instance gets assigned to the changeable `current` property. */}
+      <input
+        id={id}
+        ref={inputRef}
+        type={type}
+        value={value}
+        // autoFocus={isFocused}
+        onChange={onInputChange}
+      />
+    </>
+  );
+};
 
 const List = ({ list }) => (
   <ul>

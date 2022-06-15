@@ -1,11 +1,13 @@
 # Notes
 
-Now the React component's elements behave similarly to native HTML. Everything that's passed between a component's elements can be accessed as `children` in the component and be rendered somewhere. Sometimes when using a React component, you want to have more freedom from the outside regarding what to render on the inside of a component.
-
-With the React children prop, we can compose React components into each other. We've used it with a string and with a string wrapped in an HTML `<strong>` element, but it doesn't end here. You can pass React elements via React children as well -- which you should definitely explore more as an exercise.
+... that's the whole example of how to move from declarative to imperative programming in React. In this case, it's possible to use either the declarative or imperative approach as you experienced first hand. However, it's not always possible to use the declarative approach, so the imperative approach can be performed whenever it's necessary.
 
 # Exercises
 
-- Confirm the [source code](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/2021/React-Component-Composition).
-  - Confirm the [changes](https://github.com/the-road-to-learn-react/hacker-stories/compare/2021/Reusable-React-Component...2021/React-Component-Composition).
-- Read more about[ Component Composition in React](https://www.robinwieruch.de/react-component-composition/).
+- Confirm the [source code](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/2021/Imperative-React).
+  - Confirm the [changes](https://github.com/the-road-to-learn-react/hacker-stories/compare/2021/React-Component-Composition...2021/Imperative-React).
+- Read more about [refs in React](https://www.robinwieruch.de/react-ref/) and optionally check out the following tutorials which are using refs:
+  - [Create a Slider component with a ref](https://www.robinwieruch.de/react-slider/)
+  - [Create an image from a React component with a ref](https://www.robinwieruch.de/react-component-to-image/)
+  - [Create a custom hook with a ref](https://www.robinwieruch.de/react-custom-hook-check-if-overflow/)
+- Read more about [why frameworks matter](https://www.robinwieruch.de/why-frameworks-matter/).
