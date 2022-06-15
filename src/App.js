@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
 
@@ -13,7 +14,7 @@ const useStorageState = (key, initialState) => {
 };
 
 const App = () => {
-  const stories = [
+  const initialStories = [
     {
       title: "React",
       url: "https://reactjs.org/",
@@ -34,6 +35,14 @@ const App = () => {
 
   const [searchTerm, setSearchTerm] = useStorageState("search", "React");
 
+  const [stories, setStories] = useState(initialStories);
+
+  const handleRemoveStory = (item) => {
+    const newStories = stories.filter((story) => item.objectID !== story.objectID);
+
+    setStories(newStories);
+  };
+
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -49,19 +58,16 @@ const App = () => {
       </InputWithLabel>
       <hr />
 
-      <List list={searchedStories} />
+      <List list={searchedStories} onRemoveItem={handleRemoveStory} />
     </div>
   );
 };
 
 const InputWithLabel = ({ id, value, type = "text", onInputChange, isFocused, children }) => {
-  // A: First, create a ref with React's useRef Hook. This ref object is a persistent value which stays intact over the lifetime of a React component. It comes with a property called `current`, which, in contrast to the `ref` object, can be changed.
   const inputRef = useRef();
 
-  // C: Third, opt into React's lifecycle with React's useEffect Hook, performing the focus on the element when the component renders (or its dependencies change).
   useEffect(() => {
     if (isFocused && inputRef.current) {
-      // D: And fourth, since the ref is passed to the element's ref attribute, its `current` property gives access to the element. Execute its focus programmatically as a side-effect, but only if `isFocused` is set and the `current` property is existent.
       inputRef.current.focus();
     }
   }, [isFocused]);
@@ -70,28 +76,20 @@ const InputWithLabel = ({ id, value, type = "text", onInputChange, isFocused, ch
     <>
       <label htmlFor={id}>{children}</label>
 
-      {/* B: Second, the ref is passed to the element's JSX-reserved ref attribute and thus element instance gets assigned to the changeable `current` property. */}
-      <input
-        id={id}
-        ref={inputRef}
-        type={type}
-        value={value}
-        // autoFocus={isFocused}
-        onChange={onInputChange}
-      />
+      <input id={id} ref={inputRef} type={type} value={value} onChange={onInputChange} />
     </>
   );
 };
 
-const List = ({ list }) => (
+const List = ({ list, onRemoveItem }) => (
   <ul>
     {list.map((item) => (
-      <Item key={item.objectID} item={item} />
+      <Item key={item.objectID} item={item} onRemoveItem={onRemoveItem} />
     ))}
   </ul>
 );
 
-const Item = ({ item }) => (
+const Item = ({ item, onRemoveItem }) => (
   <li>
     <span>
       <a href={item.url}>{item.title}</a>
@@ -99,6 +97,26 @@ const Item = ({ item }) => (
     <span>{item.author}</span>
     <span>{item.num_comments}</span>
     <span>{item.points}</span>
+    <span>
+      {/* 2: Inline handler */}
+      {/* There are two solutions using the incoming onRemoveItem function in the Item component as an inline handler. First, using JavaScript's bind method: */}
+      {/* <button type="button" onClick={onRemoveItem.bind(null, item)}> */}
+
+      {/* the second and more popular solution is to use an inline arrow function, which allows us to sneak in arguments like the item: */}
+      <button
+        type="button"
+        onClick={() => {
+          // Do something
+
+          // Note: avoid using complex logic in JSX
+
+          // If inline handlers need to use a block body, because there is more than one line of code executed, it's about time to extract them as normal event handlers.
+          onRemoveItem(item);
+        }}
+      >
+        Remove
+      </button>
+    </span>
   </li>
 );
 
