@@ -35,10 +35,8 @@ const App = () => {
 
   const [searchTerm, setSearchTerm] = useStorageState("search", "React");
 
-  // A: To gain control over the list, make it stateful by using it as initial state in React's useState Hook. The returned values from the array are the current state (stories) and the state updater function (setStories):
   const [stories, setStories] = useState(initialStories);
 
-  // B: Next, we will write an event handler which removes an item from the list:
   const handleRemoveStory = (item) => {
     const newStories = stories.filter((story) => item.objectID !== story.objectID);
 
@@ -86,37 +84,40 @@ const InputWithLabel = ({ id, value, type = "text", onInputChange, isFocused, ch
 const List = ({ list, onRemoveItem }) => (
   <ul>
     {list.map((item) => (
-      <Item
-        key={item.objectID}
-        item={item}
-        // C: The List component itself does not use this new callback handler, but only passes it on to the Item component:
-        onRemoveItem={onRemoveItem}
-      />
+      <Item key={item.objectID} item={item} onRemoveItem={onRemoveItem} />
     ))}
   </ul>
 );
 
-const Item = ({ item, onRemoveItem }) => {
-  // D: Finally, the Item component uses the incoming callback handler as a function in a new handler. In this handler, we will pass the specific item to it. Moreover, an additional button element is needed to trigger the actual event:
-  const handleRemoveItem = () => {
-    onRemoveItem(item);
-  };
+const Item = ({ item, onRemoveItem }) => (
+  <li>
+    <span>
+      <a href={item.url}>{item.title}</a>
+    </span>
+    <span>{item.author}</span>
+    <span>{item.num_comments}</span>
+    <span>{item.points}</span>
+    <span>
+      {/* 2: Inline handler */}
+      {/* There are two solutions using the incoming onRemoveItem function in the Item component as an inline handler. First, using JavaScript's bind method: */}
+      {/* <button type="button" onClick={onRemoveItem.bind(null, item)}> */}
 
-  return (
-    <li>
-      <span>
-        <a href={item.url}>{item.title}</a>
-      </span>
-      <span>{item.author}</span>
-      <span>{item.num_comments}</span>
-      <span>{item.points}</span>
-      <span>
-        <button type="button" onClick={handleRemoveItem}>
-          Remove
-        </button>
-      </span>
-    </li>
-  );
-};
+      {/* the second and more popular solution is to use an inline arrow function, which allows us to sneak in arguments like the item: */}
+      <button
+        type="button"
+        onClick={() => {
+          // Do something
+
+          // Note: avoid using complex logic in JSX
+
+          // If inline handlers need to use a block body, because there is more than one line of code executed, it's about time to extract them as normal event handlers.
+          onRemoveItem(item);
+        }}
+      >
+        Remove
+      </button>
+    </span>
+  </li>
+);
 
 export default App;
