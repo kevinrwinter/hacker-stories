@@ -1,12 +1,31 @@
-import * as React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
-import { useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+
+const initialStories = [
+  {
+    title: "React",
+    url: "https://reactjs.org/",
+    author: "Jordan Walke",
+    num_comments: 3,
+    points: 4,
+    objectID: 0,
+  },
+  {
+    title: "Redux",
+    url: "https://redux.js.org/",
+    author: "Dan Abramov, Andrew Clark",
+    num_comments: 2,
+    points: 5,
+    objectID: 1,
+  },
+];
+
+const getAsyncStories = () =>
+  new Promise((resolve) => setTimeout(() => resolve({ data: { stories: initialStories } }), 2000));
 
 const useStorageState = (key, initialState) => {
-  const [value, setValue] = React.useState(localStorage.getItem(key) || initialState);
+  const [value, setValue] = useState(localStorage.getItem(key) || initialState);
 
-  React.useEffect(() => {
+  useEffect(() => {
     localStorage.setItem(key, value);
   }, [value, key]);
 
@@ -14,28 +33,14 @@ const useStorageState = (key, initialState) => {
 };
 
 const App = () => {
-  const initialStories = [
-    {
-      title: "React",
-      url: "https://reactjs.org/",
-      author: "Jordan Walke",
-      num_comments: 3,
-      points: 4,
-      objectID: 0,
-    },
-    {
-      title: "Redux",
-      url: "https://redux.js.org/",
-      author: "Dan Abramov, Andrew Clark",
-      num_comments: 2,
-      points: 5,
-      objectID: 1,
-    },
-  ];
-
   const [searchTerm, setSearchTerm] = useStorageState("search", "React");
+  const [stories, setStories] = useState([]);
 
-  const [stories, setStories] = useState(initialStories);
+  useEffect(() => {
+    getAsyncStories().then((result) => {
+      setStories(result.data.stories);
+    });
+  }, []);
 
   const handleRemoveStory = (item) => {
     const newStories = stories.filter((story) => item.objectID !== story.objectID);
@@ -98,19 +103,9 @@ const Item = ({ item, onRemoveItem }) => (
     <span>{item.num_comments}</span>
     <span>{item.points}</span>
     <span>
-      {/* 2: Inline handler */}
-      {/* There are two solutions using the incoming onRemoveItem function in the Item component as an inline handler. First, using JavaScript's bind method: */}
-      {/* <button type="button" onClick={onRemoveItem.bind(null, item)}> */}
-
-      {/* the second and more popular solution is to use an inline arrow function, which allows us to sneak in arguments like the item: */}
       <button
         type="button"
         onClick={() => {
-          // Do something
-
-          // Note: avoid using complex logic in JSX
-
-          // If inline handlers need to use a block body, because there is more than one line of code executed, it's about time to extract them as normal event handlers.
           onRemoveItem(item);
         }}
       >
