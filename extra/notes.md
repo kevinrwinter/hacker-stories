@@ -1,11 +1,12 @@
 # Notes
 
+... check out this[ guide about reducers in JavaScript](https://www.robinwieruch.de/javascript-reducer/).
+
+The reducer covers two state transitions, shows how to compute the current state and action into a new state, and uses some business logic (removal of a story) for a state transition. Now we can set a list of stories as state for the asynchronously arriving data and remove a story from the list of stories with just one state managing reducer and its associated `useReducer` hook.
+
 # Exercises
 
-- Confirm the [source code](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/2021/React-Conditional-Rendering).
-  - Confirm the [changes](https://github.com/the-road-to-learn-react/hacker-stories/compare/2021/React-Asynchronous-Data...2021/React-Conditional-Rendering).
-- Read more about [conditional rendering in React](https://www.robinwieruch.de/conditional-rendering-react/).
-- Question: Why didn't we need a conditional rendering for the empty `stories` before they get fetched from the fake API?
-  - Answer: The `stories` are mapped as list in the List component by using the `map()` method. When mapping over a list, the `map()` method returns for every item a modified version (in our case JSX). If there are no items in the list, the `map()` method will return nothing. Therefore we do not need a conditional rendering here.
-- Question: What would happen if the initial state of `stories` would be set to `null` instead of []?
-  - Answer: Then we would need a conditional rendering in the List component, because calling `map()` on `null` would throw an exception.
+- Confirm the [source code](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/2021/React-Advanced-State).
+  - Confirm the [changes](https://github.com/the-road-to-learn-react/hacker-stories/compare/2021/React-Conditional-Rendering...2021/React-Advanced-State).
+- Read more about [reducers and useReducer in React](https://www.robinwieruch.de/react-usereducer-hook/).
+- Extract the action types `'SET_STORIES'` and `'REMOVE_STORY'` as variables and reuse them in the reducer and the dispatch functions. This way, you will avoid introducing typos in your action types.
