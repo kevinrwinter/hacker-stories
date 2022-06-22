@@ -1,12 +1,12 @@
 # Notes
 
-... check out this[ guide about reducers in JavaScript](https://www.robinwieruch.de/javascript-reducer/).
+There is nothing wrong with multiple `useState` hooks in one React component. Be wary once you see multiple state updater functions in a row, however. These conditional states can lead to **impossible states** and undesired behavior in the UI.
 
-The reducer covers two state transitions, shows how to compute the current state and action into a new state, and uses some business logic (removal of a story) for a state transition. Now we can set a list of stories as state for the asynchronously arriving data and remove a story from the list of stories with just one state managing reducer and its associated `useReducer` hook.
+We moved from unreliable state transitions with multiple `useState` hooks to predictable state transitions with React's `useReducer` Hook. The state object managed by the reducer encapsulates everything related to the fetching of stories including loading and error states, but also implementation details like removing a story from the stories.
 
 # Exercises
 
-- Confirm the [source code](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/2021/React-Advanced-State).
-  - Confirm the [changes](https://github.com/the-road-to-learn-react/hacker-stories/compare/2021/React-Conditional-Rendering...2021/React-Advanced-State).
-- Read more about [reducers and useReducer in React](https://www.robinwieruch.de/react-usereducer-hook/).
-- Extract the action types `'SET_STORIES'` and `'REMOVE_STORY'` as variables and reuse them in the reducer and the dispatch functions. This way, you will avoid introducing typos in your action types.
+- Confirm the [source code](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/2021/React-Impossible-States?file=/src/App.js).
+  - Confirm the [changes](https://github.com/the-road-to-learn-react/hacker-stories/compare/2021/React-Advanced-State...2021/React-Impossible-States).
+- Read more about [when to use useState or useReducer in React](https://www.robinwieruch.de/react-usereducer-vs-usestate/).
+- Read more about [deriving state from props in React](https://www.robinwieruch.de/react-derive-state-props/).
