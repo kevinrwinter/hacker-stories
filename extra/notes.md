@@ -1,12 +1,12 @@
 # Notes
 
-There is nothing wrong with multiple `useState` hooks in one React component. Be wary once you see multiple state updater functions in a row, however. These conditional states can lead to **impossible states** and undesired behavior in the UI.
+In this section, we will use the informative [Hacker News API](https://hn.algolia.com/api) to request popular tech stories.
 
-We moved from unreliable state transitions with multiple `useState` hooks to predictable state transitions with React's `useReducer` Hook. The state object managed by the reducer encapsulates everything related to the fetching of stories including loading and error states, but also implementation details like removing a story from the stories.
+First, the `API_ENDPOINT` (A) is used to fetch popular tech stories for a certain query (a search term). In this case, we fetch stories about React (B). Second, the native browser's [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) is used to make this request (B). For the fetch API, the response needs to be translated into JSON (C). Finally, the returned result has a different data structure (D), which we send as payload to our component's state reducer.
 
 # Exercises
 
-- Confirm the [source code](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/2021/React-Impossible-States?file=/src/App.js).
-  - Confirm the [changes](https://github.com/the-road-to-learn-react/hacker-stories/compare/2021/React-Advanced-State...2021/React-Impossible-States).
-- Read more about [when to use useState or useReducer in React](https://www.robinwieruch.de/react-usereducer-vs-usestate/).
-- Read more about [deriving state from props in React](https://www.robinwieruch.de/react-derive-state-props/).
+- Confirm the [source code](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/2021/Data-Fetching-with-React).
+  - Confirm the [changes](https://github.com/the-road-to-learn-react/hacker-stories/compare/2021/React-Impossible-States...2021/Data-Fetching-with-React).
+- Read through [Hacker News](https://news.ycombinator.com/) and its[ API](https://hn.algolia.com/api).
+- Optional: Read more about[ JavaScript's Template Literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).

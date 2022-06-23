@@ -1,27 +1,7 @@
 import { useState, useEffect, useRef, useReducer } from "react";
 
-const initialStories = [
-  {
-    title: "React",
-    url: "https://reactjs.org/",
-    author: "Jordan Walke",
-    num_comments: 3,
-    points: 4,
-    objectID: 0,
-  },
-  {
-    title: "Redux",
-    url: "https://redux.js.org/",
-    author: "Dan Abramov, Andrew Clark",
-    num_comments: 2,
-    points: 5,
-    objectID: 1,
-  },
-];
-
-// const getAsyncStories = () => new Promise((resolve, reject) => setTimeout(reject, 2000));
-const getAsyncStories = () =>
-  new Promise((resolve) => setTimeout(() => resolve({ data: { stories: initialStories } }), 2000));
+// (A)
+const API_ENDPOINT = "https://hn.algolia.com/api/v1/search?query=";
 
 const useStorageState = (key, initialState) => {
   const [value, setValue] = useState(localStorage.getItem(key) || initialState);
@@ -57,7 +37,7 @@ const storiesReducer = (state, action) => {
     case "REMOVE_STORY":
       return {
         ...state,
-        data: state.filter((story) => action.payload.objectID !== story.objectID),
+        data: state.filter(story => action.payload.objectID !== story.objectID),
       };
     default:
       throw new Error();
@@ -67,54 +47,77 @@ const storiesReducer = (state, action) => {
 const App = () => {
   const [searchTerm, setSearchTerm] = useStorageState("search", "React");
 
-  const [stories, dispatchStories] = useReducer(storiesReducer, { data: [], isLoading: false, isError: false });
-
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [isError, setIsError] = useState(false);
+  const [stories, dispatchStories] = useReducer(storiesReducer, {
+    data: [],
+    isLoading: false,
+    isError: false,
+  });
 
   useEffect(() => {
     dispatchStories({ type: "STORIES_FETCH_INIT" });
 
-    getAsyncStories()
-      .then((result) => {
+    fetch(`${API_ENDPOINT}react`) // (B)
+      .then(response => response.json()) // (C)
+      .then(result => {
         dispatchStories({
           type: "STORIES_FETCH_SUCCESS",
-          payload: result.data.stories,
+          payload: result.hits, // (D)
         });
       })
       .catch(() => dispatchStories({ type: "STORIES_FETCH_FAILURE" }));
   }, []);
 
-  const handleRemoveStory = (item) => {
+  const handleRemoveStory = item => {
     dispatchStories({
       type: "REMOVE_STORY",
       payload: item,
     });
   };
 
-  const handleSearch = (event) => {
+  const handleSearch = event => {
     setSearchTerm(event.target.value);
   };
 
-  const searchedStories = stories.data.filter((story) => story.title.toLowerCase().includes(searchTerm.toLowerCase()));
+  const searchedStories = stories.data.filter(story =>
+    story.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div>
       <h1>My Hacker Stories</h1>
 
-      <InputWithLabel id="search" value={searchTerm} isFocused onInputChange={handleSearch}>
+      <InputWithLabel
+        id="search"
+        value={searchTerm}
+        isFocused
+        onInputChange={handleSearch}
+      >
         <strong>Search:</strong>
       </InputWithLabel>
       <hr />
 
       {stories.isError && <p>Something went wrong...</p>}
 
-      {stories.isLoading ? <p>Loading...</p> : <List list={searchedStories} onRemoveItem={handleRemoveStory} />}
+      {stories.isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <List
+          list={searchedStories}
+          onRemoveItem={handleRemoveStory}
+        />
+      )}
     </div>
   );
 };
 
-const InputWithLabel = ({ id, value, type = "text", onInputChange, isFocused, children }) => {
+const InputWithLabel = ({
+  id,
+  value,
+  type = "text",
+  onInputChange,
+  isFocused,
+  children,
+}) => {
   const inputRef = useRef();
 
   useEffect(() => {
@@ -127,15 +130,25 @@ const InputWithLabel = ({ id, value, type = "text", onInputChange, isFocused, ch
     <>
       <label htmlFor={id}>{children}</label>
 
-      <input id={id} ref={inputRef} type={type} value={value} onChange={onInputChange} />
+      <input
+        id={id}
+        ref={inputRef}
+        type={type}
+        value={value}
+        onChange={onInputChange}
+      />
     </>
   );
 };
 
 const List = ({ list, onRemoveItem }) => (
   <ul>
-    {list.map((item) => (
-      <Item key={item.objectID} item={item} onRemoveItem={onRemoveItem} />
+    {list.map(item => (
+      <Item
+        key={item.objectID}
+        item={item}
+        onRemoveItem={onRemoveItem}
+      />
     ))}
   </ul>
 );
