@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef, useReducer } from "react";
 
-// (A)
 const API_ENDPOINT = "https://hn.algolia.com/api/v1/search?query=";
 
 const useStorageState = (key, initialState) => {
@@ -54,18 +53,25 @@ const App = () => {
   });
 
   useEffect(() => {
+    // if `searchTerm` is not present
+    // e.g. null, empty string, undefined
+    // do nothing
+    // more generalized condition than searchTerm === ''
+
+    if (!searchTerm) return;
+
     dispatchStories({ type: "STORIES_FETCH_INIT" });
 
-    fetch(`${API_ENDPOINT}react`) // (B)
-      .then(response => response.json()) // (C)
+    fetch(`${API_ENDPOINT}${searchTerm}`)
+      .then(response => response.json())
       .then(result => {
         dispatchStories({
           type: "STORIES_FETCH_SUCCESS",
-          payload: result.hits, // (D)
+          payload: result.hits,
         });
       })
       .catch(() => dispatchStories({ type: "STORIES_FETCH_FAILURE" }));
-  }, []);
+  }, [searchTerm]);
 
   const handleRemoveStory = item => {
     dispatchStories({
@@ -77,10 +83,6 @@ const App = () => {
   const handleSearch = event => {
     setSearchTerm(event.target.value);
   };
-
-  const searchedStories = stories.data.filter(story =>
-    story.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   return (
     <div>
@@ -102,7 +104,7 @@ const App = () => {
         <p>Loading...</p>
       ) : (
         <List
-          list={searchedStories}
+          list={stories.data}
           onRemoveItem={handleRemoveStory}
         />
       )}
