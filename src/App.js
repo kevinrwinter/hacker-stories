@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useState, useEffect, useRef, useReducer } from "react";
 
 const API_ENDPOINT = "https://hn.algolia.com/api/v1/search?query=";
@@ -52,12 +53,9 @@ const App = () => {
     isError: false,
   });
 
-  useEffect(() => {
-    // if `searchTerm` is not present
-    // e.g. null, empty string, undefined
-    // do nothing
-    // more generalized condition than searchTerm === ''
-
+  // (A)
+  const handleFetchStories = useCallback(() => {
+    // (B)
     if (!searchTerm) return;
 
     dispatchStories({ type: "STORIES_FETCH_INIT" });
@@ -71,7 +69,11 @@ const App = () => {
         });
       })
       .catch(() => dispatchStories({ type: "STORIES_FETCH_FAILURE" }));
-  }, [searchTerm]);
+  }, [searchTerm]); // (E)
+
+  useEffect(() => {
+    handleFetchStories(); // (C)
+  }, [handleFetchStories]); // (D)
 
   const handleRemoveStory = item => {
     dispatchStories({
